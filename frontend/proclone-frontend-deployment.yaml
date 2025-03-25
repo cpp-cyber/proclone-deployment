@@ -1,0 +1,22 @@
+apiVerion: apps/v1
+kind: Deployment
+metadata:
+  name: proclone-frontend
+  labels:
+    app: proclone-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: proclone-frontend
+  template:
+    metadata:
+      labels:
+        app: proclone-frontend
+    spec:
+      containers:
+        - name: proclone-frontend
+          image: docker.io/valorouskarma/proclone-frontend:latest
+          ports:
+          - containerPort: 80
+
