@@ -1,14 +1,14 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: proclone-frontend-gateway
+    name: pc-front-gateway
 spec:
-  selector:
-    istio: ingressgateway
-  servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    hosts:
-    - "worker01.sdc.cpp"
+    selector:
+        istio: ingressgateway
+    servers:
+        - port:
+              number: 80
+              name: http
+              protocol: HTTP
+          hosts:
+              - "*"
