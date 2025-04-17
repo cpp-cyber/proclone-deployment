@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+<<<<<<< HEAD:frontend/proclone-frontend-deployment.yaml
     name: pc-front
     labels:
         app: pc-front
@@ -19,3 +20,24 @@ spec:
                   image: docker.io/valorouskarma/proclone-frontend:latest
                   ports:
                       - containerPort: 80
+=======
+  name: pc-front
+  labels:
+    app: pc-front
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pc-front
+  template:
+    metadata:
+      labels:
+        app: pc-front
+    spec:
+      containers:
+        - name: pc-front
+          image: docker.io/valorouskarma/proclone-frontend:latest
+          ports:
+          - containerPort: 80
+
+>>>>>>> b358ea8 (style: naming):frontend/pc-front-deployment.yaml
