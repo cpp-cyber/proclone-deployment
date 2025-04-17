@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proclone-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: proclone-backend
+  template:
+    metadata:
+      labels:
+        app: proclone-backend
+    spec:
+      containers:
+      - name: proclone-backend
+        image: valorouskarma/proclone:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: NETBIOS_NAME
+          valueFrom:
+            secretKeyRef:
+              name: proclone-secrets
+              key: netbios
