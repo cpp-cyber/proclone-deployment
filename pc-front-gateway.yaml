@@ -1,14 +1,17 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: pc-gateway
+    name: pc-gateway
 spec:
-  selector:
-    istio: ingressgateway
-  servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    hosts:
-    - "*"
+    selector:
+        istio: ingressgateway
+    servers:
+        - port:
+              number: 443
+              name: https
+              protocol: HTTPS
+          tls:
+              mode: SIMPLE
+              credentialName: secret-cert
+          hosts:
+              - "yourdomain.com"
