@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: allow-external-ldap
+spec:
+  hosts:
+  - "scar.sdc.cpp"
+  location: MESH_EXTERNAL
+  ports:
+  - number: 389
+    name: ldap
+    protocol: TCP
+    resolution: DNS
