@@ -1,25 +1,50 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: proclone-backend
+    name: proclone-backend
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: proclone-backend
-  template:
-    metadata:
-      labels:
-        app: proclone-backend
-    spec:
-      containers:
-      - name: proclone-backend
-        image: valorouskarma/proclone:latest
-        ports:
-        - containerPort: 8080
-        env:
-        - name: NETBIOS_NAME
-          valueFrom:
-            secretKeyRef:
-              name: proclone-secrets
-              key: netbios
+    replicas: 1
+    selector:
+        matchLabels:
+            app: proclone-backend
+    template:
+        metadata:
+            labels:
+                app: proclone-backend
+        spec:
+            containers:
+                - name: proclone-backend
+                  image: valorouskarma/proclone:latest
+                  ports:
+                      - containerPort: 8080
+                  env:
+                      - name: LDAP_SERVER
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: LDAP_SERVER
+                      - name: PC_PORT
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: PC_PORT
+                      - name: SECRET_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: SECRET_KEY
+                      - name: LDAP_BIND_DN
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: LDAP_BIND_DN
+                      - name: LDAP_BIND_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: LDAP_BIND_PASSWORD
+                      - name: LDAP_BASE_DN
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: LDAP_BASE_DN
