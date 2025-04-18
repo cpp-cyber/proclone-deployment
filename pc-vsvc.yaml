@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: proclone
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - pc-gateway
+  http:
+  - match:
+    - uri:
+        prefix: "/api/"
+    route:
+    - destination:
+        host: proclone-backend
+        port:
+          number: 80
+  - match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:
+        host: pc-front
+        port:
+          number: 80
