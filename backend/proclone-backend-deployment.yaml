@@ -84,8 +84,3 @@ spec:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: PROXMOX_NODES
-                      - name: PROXMOX_PORT
-                        valueFrom:
-                            secretKeyRef:
-                                name: proclone-secrets
-                                key: PROXMOX_PORT
