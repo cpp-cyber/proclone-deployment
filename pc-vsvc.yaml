@@ -30,8 +30,12 @@ spec:
                 - [192.168.1.0/24] #REPLACE (subnet containing proxmox nodes)
               gateways:
                 - mesh
-              port:
-                number: 15443
+              port: 8006
+          route:
+            - destination:
+                host: istio-egressgateway.istio-system.svc.cluster.local
+                port:
+                    number: 15443
         - match:
             - gateways:
                 - istio-egressgateway
