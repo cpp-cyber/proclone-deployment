@@ -20,6 +20,10 @@ spec:
                       - containerPort: 8080
                         protocol: TCP
                   env:
+                      - name: REDIS_ADDR
+                        value: "redis-master.default.svc.cluster.local:6379"
+                      - name: REDIS_PASSWORD
+                        value: ""
                       - name: LDAP_SERVER
                         valueFrom:
                             secretKeyRef:
