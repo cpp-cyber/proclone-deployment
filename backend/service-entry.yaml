@@ -4,7 +4,7 @@ metadata:
   name: allow-external-ldap
 spec:
   hosts:
-  - "scar.sdc.cpp"
+  - "[your.domain.controller]" # replace
   location: MESH_EXTERNAL
   ports:
   - number: 389

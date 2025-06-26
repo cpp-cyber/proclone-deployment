@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: allow-external-proxmox
+spec:
+  hosts:
+  - "[proxmox.server.address]" # replace this
+  location: MESH_EXTERNAL
+  ports:
+  - number: 8006
+    name: https-8006
+    protocol: HTTPS
+  resolution: DNS

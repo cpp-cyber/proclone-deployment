@@ -4,23 +4,43 @@ metadata:
     name: proclone
 spec:
     hosts:
-        - "yourdomain.com"
+        - "*"
     gateways:
         - pc-gateway
     http:
         - match:
-              - uri:
-                    prefix: "/api/"
+            - uri:
+                prefix: "/api/"
           route:
-              - destination:
-                    host: proclone-backend
-                    port:
-                        number: 80
+            - destination:
+                host: proclone-backend
+                port:
+                    number: 80
         - match:
-              - uri:
-                    prefix: "/"
+            - uri:
+                prefix: "/"
           route:
-              - destination:
-                    host: pc-front
-                    port:
-                        number: 80
+            - destination:
+                host: pc-front
+                port:
+                    number: 80
+    tcp:
+        - match:
+            - desinationSubnets:
+                - [192.168.1.0/24] #REPLACE (subnet containing proxmox nodes)
+              gateways:
+                - mesh
+              port:
+                number: 15443
+        - match:
+            - gateways:
+                - istio-egressgateway
+              port: 15443
+          route:
+            - destination:
+                host: [proxmox.server.address] #REPLACE
+                port:
+                    number: 8006
+
+
+            

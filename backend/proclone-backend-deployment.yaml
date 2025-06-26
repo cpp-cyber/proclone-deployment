@@ -15,8 +15,10 @@ spec:
             containers:
                 - name: proclone-backend
                   image: valorouskarma/proclone:latest
+                  imagePullPolicy: Always
                   ports:
                       - containerPort: 8080
+                        protocol: TCP
                   env:
                       - name: LDAP_SERVER
                         valueFrom:
@@ -48,3 +50,38 @@ spec:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: LDAP_BASE_DN
+                      - name: PROXMOX_SERVER
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: PROXMOX_SERVER
+                      - name: PROXMOX_PORT
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: PROXMOX_PORT
+                      - name: PROXMOX_TOKEN_ID
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: PROXMOX_TOKEN_ID
+                      - name: PROXMOX_TOKEN_SECRET
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: PROXMOX_TOKEN_SECRET
+                      - name: PROXMOX_VERIFY_SSL
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: PROXMOX_VERIFY_SSL
+                      - name: PROXMOX_NODES
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: PROXMOX_NODES
+                      - name: PROXMOX_PORT
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: PROXMOX_PORT

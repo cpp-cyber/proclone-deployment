@@ -5,6 +5,9 @@ metadata:
 spec:
   ports:
   - port: 80
+    protocol: TCP
     targetPort: 8080
   selector:
     app: proclone-backend
+  type: ClusterIP
+  internalTrafficPolicy: Cluster
