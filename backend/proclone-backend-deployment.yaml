@@ -24,6 +24,8 @@ spec:
                         value: "redis-master.default.svc.cluster.local:6379"
                       - name: REDIS_PASSWORD
                         value: ""
+                      - name: STORAGE_ID
+                        value: [your shared storage ID] # Edit this
                       - name: LDAP_SERVER
                         valueFrom:
                             secretKeyRef:
