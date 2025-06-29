@@ -25,7 +25,7 @@ spec:
                       - name: REDIS_PASSWORD
                         value: ""
                       - name: STORAGE_ID
-                        value: [your shared storage ID] # Edit this
+                        value: "[your shared storage ID]" 
                       - name: LDAP_SERVER
                         valueFrom:
                             secretKeyRef:

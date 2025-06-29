@@ -1,0 +1,70 @@
+# +argocd:skip-file-rendering
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: proclone-argo
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: proclonefrontend=docker.io/valorouskarma/proclone-frontend:latest, proclone=valorouskarma/proclone:latest
+    argocd-image-updater.argoproj.io/proclone.update-strategy: digest
+    argocd-image-updater.argoproj.io/proclonefrontend.update-strategy: digest
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated: {}
+  source:
+    path: ./overlays/prod
+    repoURL: https://github.com/Shadowclaw844/proclone-kustomize
+    targetRevision: master
+    kustomize:
+      patches:
+        - target:
+            kind: DestinationRule
+            name: egress-proxmox-dr
+          patch: |-
+            - op: replace
+              path: /spec/host
+              value: proxmox.server.address           # Replace with the URL of your proxmox server
+        - target:
+            kind: ServiceEntry
+            name: allow-external-ldap
+          patch: |-
+            - op: replace
+              path: /spec/hosts/0
+              value: "your.domain.controller"         # Replace with your domain controller
+        - target:
+            kind: Gateway
+            name: pc-gateway
+          patch: |-
+            - op: replace
+              path: /spec/servers/0/hosts/0
+              value: "frontend.your.domain"           # Replace with the frontend URL
+        - target:
+            kind: ServiceEntry
+            name: allow-external-proxmox
+          patch: |-
+            - op: replace
+              path: /spec/hosts/0
+              value: "proxmox.server.address"         # Replace with the URL of your proxmox server
+        - target:
+            kind: Deployment
+            name: proclone-backend
+          patch: |-
+            - op: replace
+              path: /spec/template/spec/containers/0/env/2/value
+              value: "proxmox-storage-id"             # Replace with chosen storage ID in Proxmox 
+        - target:
+            kind: VirtualService
+            name: proclone
+          patch: |-
+            - op: replace
+              path: /spec/tcp/0/match/0/destinationSubnets/0
+              value: "192.168.1.0/24"                 # Replace with subnet containing Proxmox nodes
+            - op: replace
+              path: /spec/tcp/1/route/0/destination/host
+              value: "promxox.server.address"         # Replace with the URL of your proxmox server

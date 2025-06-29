@@ -12,6 +12,6 @@ spec:
               protocol: HTTPS
           tls:
               mode: SIMPLE
-              credentialName: secret-cert
+              credentialName: kamino-cert
           hosts:
-              - "[your.domain.controller]" # replace
+              - "[frontend.your.domain]" # replace

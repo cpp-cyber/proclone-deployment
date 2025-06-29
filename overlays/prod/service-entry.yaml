@@ -1,0 +1,3 @@
+- op: replace
+  path: /spec/hosts/0
+  value: "your.domain.controller" # Replace with your domain controller 

@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+patches:
+  - path: destination-rule.yaml
+    target:
+      kind: DestinationRule
+      name: egress-proxmox-dr
+  - path: service-entry.yaml
+    target:
+      kind: ServiceEntry
+      name: allow-external-ldap
+  - path: pc-front-gateway.yaml
+    target:
+      kind: Gateway
+      name: pc-gateway
+  - path: proxmox-service-entry.yaml
+    target:
+      kind: ServiceEntry
+      name: allow-external-proxmox
+  - path: proclone-backend-deployment.yaml
+    target:
+      kind: Deployment
+      name: proclone-backend
+  - path: pc-vsvc.yaml
+    target:
+      kind: VirtualService
+      name: proclone

@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - pc-front-deployment.yaml
+  - pc-front-svc.yaml
+  - pc-front-gateway.yaml
+  - pc-vsvc.yaml

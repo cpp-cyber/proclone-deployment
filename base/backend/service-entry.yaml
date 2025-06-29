@@ -10,4 +10,4 @@ spec:
   - number: 389
     name: ldap
     protocol: TCP
-    resolution: DNS
+  resolution: DNS

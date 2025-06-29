@@ -1,0 +1,3 @@
+- op: replace
+  path: /spec/hosts/0
+  value: "proxmox.server.address" # Replace with the URL of your proxmox server

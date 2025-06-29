@@ -65,3 +65,25 @@
    ```bash
    kubectl apply -f <your-config-directory>/
    ```
+
+### Argo CD Deployment
+**Requires [Argo CD](https://argo-cd.readthedocs.io/en/stable/) and [Argo CD Image Updater](https://argocd-image-updater.readthedocs.io/en/stable/)**
+
+1. **Follow steps 1-6 above**
+
+2. **Set all values in `proclone-argocd-template.yaml`**
+   (e.g. hostnames, IP ranges, domains)
+
+3. **Set all values in `proclone-secrets.yaml` to your correct secret strings**
+
+4. **Create the application using the `argocd` cli tool**
+
+   ```bash
+   argocd app create --file proclone-argocd-template.yaml
+   ```
+
+5. **Apply `proclone-secrets.yaml`**
+
+   ```bash
+   kubectl apply -f proclone-secrets.yaml
+   ```

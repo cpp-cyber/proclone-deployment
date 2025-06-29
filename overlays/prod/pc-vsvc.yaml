@@ -1,0 +1,7 @@
+- op: replace
+  path: /spec/tcp/0/match/0/destinationSubnets/0
+  value: "192.168.1.0/24" # Replace with subnet containing Proxmox nodes
+
+- op: replace
+  path: /spec/tcp/1/route/0/destination/host
+  value: "proxmox.server.address" # Replace with the URL of your proxmox server
