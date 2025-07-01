@@ -14,7 +14,7 @@ spec:
         spec:
             containers:
                 - name: proclone-backend
-                  image: valorouskarma/proclone:latest
+                  image: cppcyber/proclone:latest
                   imagePullPolicy: Always
                   ports:
                       - containerPort: 8080
