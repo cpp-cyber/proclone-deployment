@@ -14,7 +14,7 @@ spec:
         spec:
             containers:
                 - name: proclone-backend
-                  image: cppcyber/proclone:latest
+                  image: ghcr.io/cpp-cyber/proclone:latest
                   imagePullPolicy: Always
                   ports:
                       - containerPort: 8080

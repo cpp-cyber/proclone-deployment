@@ -7,7 +7,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd-image-updater.argoproj.io/image-list: proclonefrontend=docker.io/valorouskarma/proclone-frontend:latest, proclone=cppcyber/proclone:latest
+    argocd-image-updater.argoproj.io/image-list: proclonefrontend=docker.io/valorouskarma/proclone-frontend:latest, proclone=ghcr.io/cpp-cyber/proclone:latest
     argocd-image-updater.argoproj.io/proclone.update-strategy: digest
     argocd-image-updater.argoproj.io/proclonefrontend.update-strategy: digest
 spec:
