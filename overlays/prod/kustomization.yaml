@@ -27,3 +27,7 @@ patches:
     target:
       kind: VirtualService
       name: proclone
+  - path: pc-front-deployment.yaml
+    target:
+      kind: Deployment
+      name: pc-front

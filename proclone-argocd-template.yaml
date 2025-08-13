@@ -58,6 +58,9 @@ spec:
             - op: replace
               path: /spec/template/spec/containers/0/env/2/value
               value: "proxmox-storage-id"             # Replace with chosen storage ID in Proxmox 
+            - op: replace 
+              path: /spec/template/spec/containers/0/image
+              value: "ghcr.io/cpp-cyber/proclone:latest"
         - target:
             kind: VirtualService
             name: proclone
@@ -68,3 +71,10 @@ spec:
             - op: replace
               path: /spec/tcp/1/route/0/destination/host
               value: "promxox.server.address"         # Replace with the URL of your proxmox server
+        - target:
+            kind: Deployment
+            name: pc-front
+          patch: |-
+            - op: replace
+              path: /spec/template/spec/containers/0/image
+              value: "docker.io/valorouskarma/proclone-frontend:latest"
