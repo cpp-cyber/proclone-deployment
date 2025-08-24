@@ -86,3 +86,33 @@ spec:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: PROXMOX_NODES
+                      - name: DB_HOST
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: DB_HOST
+                      - name: DB_PORT
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: DB_PORT
+                      - name: DB_USER
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: DB_USER
+                      - name: DB_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: DB_PASSWORD
+                      - name: DB_NAME
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: DB_NAME
+                      - name: UPLOADS_DIR
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: UPLOADS_DIR

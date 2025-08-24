@@ -6,3 +6,4 @@ resources:
   - proclone-backend-svc.yaml
   - proxmox-service-entry.yaml
   - service-entry.yaml
+  - proclone-backend-pvc.yaml
