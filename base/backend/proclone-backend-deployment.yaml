@@ -19,6 +19,9 @@ spec:
                   ports:
                       - containerPort: 8080
                         protocol: TCP
+                  volumeMounts:
+                  - name: uploads
+                    mountPath: /app/uploads
                   env:
                       - name: REDIS_ADDR
                         value: "redis-master.default.svc.cluster.local:6379"
@@ -116,3 +119,7 @@ spec:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: UPLOADS_DIR
+            volumes:
+              - name: uploads
+                persistentVolumeClaim:
+                  claimName: proclone-backend-pvc
