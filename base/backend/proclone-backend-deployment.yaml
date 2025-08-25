@@ -119,6 +119,15 @@ spec:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: UPLOADS_DIR
+                      - name: SIGNOZ_SERVICE_NAME
+                        value: "proclone"
+                      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: OTEL_EXPORTER_OTLP_ENDPOINT
+                      - name: SIGNOZ_INSECURE_MODE
+                        value: "true"
             volumes:
               - name: uploads
                 persistentVolumeClaim:
