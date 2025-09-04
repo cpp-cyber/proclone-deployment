@@ -69,16 +69,21 @@ spec:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: LDAP_BASE_DN
-                      - name: PROXMOX_SERVER
+                      - name: PROXMOX_HOST
                         valueFrom:
                             secretKeyRef:
                                 name: proclone-secrets
-                                key: PROXMOX_SERVER
+                                key: PROXMOX_HOST
                       - name: PROXMOX_PORT
                         valueFrom:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: PROXMOX_PORT
+                      - name: PROXMOX_CRITICAL_POOL
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: PROXMOX_CRITICAL_POOL
                       - name: PROXMOX_TOKEN_ID
                         valueFrom:
                             secretKeyRef:
