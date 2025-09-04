@@ -29,11 +29,11 @@ spec:
                         value: ""
                       - name: STORAGE_ID
                         value: "[your shared storage ID]" 
-                      - name: LDAP_SERVER
+                      - name: LDAP_URL
                         valueFrom:
                             secretKeyRef:
                                 name: proclone-secrets
-                                key: LDAP_SERVER
+                                key: LDAP_URL
                       - name: PC_PORT
                         valueFrom:
                             secretKeyRef:
@@ -44,16 +44,26 @@ spec:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: SECRET_KEY
-                      - name: LDAP_BIND_DN
+                      - name: LDAP_BIND_USER
                         valueFrom:
                             secretKeyRef:
                                 name: proclone-secrets
-                                key: LDAP_BIND_DN
+                                key: LDAP_BIND_USER
                       - name: LDAP_BIND_PASSWORD
                         valueFrom:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: LDAP_BIND_PASSWORD
+                      - name: LDAP_SKIP_TLS_VERIFY
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: LDAP_SKIP_TLS_VERIFY
+                      - name: LDAP_ADMIN_GROUP_DN
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: LDAP_ADMIN_GROUP_DN
                       - name: LDAP_BASE_DN
                         valueFrom:
                             secretKeyRef:
@@ -114,11 +124,11 @@ spec:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: DB_NAME
-                      - name: UPLOADS_DIR
+                      - name: UPLOAD_DIR
                         valueFrom:
                             secretKeyRef:
                                 name: proclone-secrets
-                                key: UPLOADS_DIR
+                                key: UPLOAD_DIR
                       - name: SIGNOZ_SERVICE_NAME
                         value: "proclone"
                       - name: OTEL_EXPORTER_OTLP_ENDPOINT
@@ -128,6 +138,16 @@ spec:
                                 key: OTEL_EXPORTER_OTLP_ENDPOINT
                       - name: SIGNOZ_INSECURE_MODE
                         value: "true"
+                      - name: "ROUTER_VMID"
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: ROUTER_VMID
+                      - name: "ROUTER_NODE"
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: ROUTER_NODE
             volumes:
               - name: uploads
                 persistentVolumeClaim:
