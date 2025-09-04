@@ -89,6 +89,11 @@ spec:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: PROXMOX_TOKEN_ID
+                      - name: REALM
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: REALM
                       - name: PROXMOX_TOKEN_SECRET
                         valueFrom:
                             secretKeyRef:
