@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - destination-rule.yaml
   - proclone-backend-deployment.yaml
+  - proclone-backend-pvc.yaml
   - proclone-backend-svc.yaml
   - proxmox-service-entry.yaml
   - service-entry.yaml
