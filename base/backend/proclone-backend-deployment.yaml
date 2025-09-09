@@ -19,6 +19,9 @@ spec:
                   ports:
                       - containerPort: 8080
                         protocol: TCP
+                  volumeMounts:
+                      - name: uploads
+                        mountPath: /app/uploads
                   env:
                       - name: REDIS_ADDR
                         value: "redis-master.default.svc.cluster.local:6379"
@@ -26,11 +29,11 @@ spec:
                         value: ""
                       - name: STORAGE_ID
                         value: "[your shared storage ID]" 
-                      - name: LDAP_SERVER
+                      - name: LDAP_URL
                         valueFrom:
                             secretKeyRef:
                                 name: proclone-secrets
-                                key: LDAP_SERVER
+                                key: LDAP_URL
                       - name: PC_PORT
                         valueFrom:
                             secretKeyRef:
@@ -41,36 +44,56 @@ spec:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: SECRET_KEY
-                      - name: LDAP_BIND_DN
+                      - name: LDAP_BIND_USER
                         valueFrom:
                             secretKeyRef:
                                 name: proclone-secrets
-                                key: LDAP_BIND_DN
+                                key: LDAP_BIND_USER
                       - name: LDAP_BIND_PASSWORD
                         valueFrom:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: LDAP_BIND_PASSWORD
+                      - name: LDAP_SKIP_TLS_VERIFY
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: LDAP_SKIP_TLS_VERIFY
+                      - name: LDAP_ADMIN_GROUP_DN
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: LDAP_ADMIN_GROUP_DN
                       - name: LDAP_BASE_DN
                         valueFrom:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: LDAP_BASE_DN
-                      - name: PROXMOX_SERVER
+                      - name: PROXMOX_HOST
                         valueFrom:
                             secretKeyRef:
                                 name: proclone-secrets
-                                key: PROXMOX_SERVER
+                                key: PROXMOX_HOST
                       - name: PROXMOX_PORT
                         valueFrom:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: PROXMOX_PORT
+                      - name: PROXMOX_CRITICAL_POOL
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: PROXMOX_CRITICAL_POOL
                       - name: PROXMOX_TOKEN_ID
                         valueFrom:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: PROXMOX_TOKEN_ID
+                      - name: REALM
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: REALM
                       - name: PROXMOX_TOKEN_SECRET
                         valueFrom:
                             secretKeyRef:
@@ -86,3 +109,61 @@ spec:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: PROXMOX_NODES
+                      - name: DB_HOST
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: DB_HOST
+                      - name: DB_PORT
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: DB_PORT
+                      - name: DB_USER
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: DB_USER
+                      - name: DB_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: DB_PASSWORD
+                      - name: DB_NAME
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: DB_NAME
+                      - name: UPLOAD_DIR
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: UPLOAD_DIR
+                      - name: SIGNOZ_SERVICE_NAME
+                        value: "proclone"
+                      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: OTEL_EXPORTER_OTLP_ENDPOINT
+                      - name: SIGNOZ_INSECURE_MODE
+                        value: "true"
+                      - name: "ROUTER_VMID"
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: ROUTER_VMID
+                      - name: "ROUTER_NODE"
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: ROUTER_NODE
+                      - name: "FRONTEND_URL"
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: FRONTEND_URL
+            volumes:
+              - name: uploads
+                persistentVolumeClaim:
+                    claimName: proclone-backend-pvc
