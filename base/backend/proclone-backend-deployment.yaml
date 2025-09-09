@@ -158,6 +158,11 @@ spec:
                             secretKeyRef:
                                 name: proclone-secrets
                                 key: ROUTER_NODE
+                      - name: "FRONTEND_URL"
+                        valueFrom:
+                            secretKeyRef:
+                                name: proclone-secrets
+                                key: FRONTEND_URL
             volumes:
               - name: uploads
                 persistentVolumeClaim:
